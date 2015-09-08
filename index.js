@@ -1,7 +1,7 @@
 var express = require("express");
  path = require('path');
 var app = express();
-var port = 3720;
+var port = 8080;
 app.use(express.static(path.join(__dirname, 'public')));
  app.set('view engine', 'jade');
 app.get("/", function(req, res){
@@ -10,7 +10,6 @@ app.get("/", function(req, res){
      });
 });
 var io = require('socket.io').listen(app.listen(port));
-var $ = require('JQuery');
 io.sockets.on('connection', function (socket) {
     socket.emit('message', { message: 'welcome to the chat' });
     socket.on('send', function (data) {
